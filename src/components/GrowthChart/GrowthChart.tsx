@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -63,6 +64,16 @@ const GrowthChart = () => {
         },
       },
     },
+    legend: {
+      labels: {
+        filter: function (item: any) {
+          console.log("🚀 ~ GrowthChart ~ options.legend.labels.item:", item);
+
+          // Logic to remove a particular legend item goes here
+          return item.text.includes("Required");
+        },
+      },
+    },
   };
 
   const labels = [
@@ -86,38 +97,77 @@ const GrowthChart = () => {
   ];
 
   const data = {
-    labels,
+    labels: labels,
     datasets: [
       {
         label: "Height (cm)",
-        data: [
-          0, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100, 105, 110, 115, 120,
-          125,
-        ],
+        data: [130, 132, 135, 138, 140, 142, 145, 147, 150, 152, 155, 158],
         borderColor: "rgb(255, 99, 132)",
         backgroundColor: "rgba(255, 99, 132, 0.5)",
         yAxisID: "y",
       },
       {
+        label: "Height Required (cm)",
+        data: [128, 130, 133, 136, 138, 140, 143, 146, 148, 150, 152, 155],
+        borderColor: "#ffccd7",
+        yAxisID: "y",
+        borderDash: [5, 5],
+      },
+      {
         label: "Head Circumference (cm)",
-        data: [
-          0, 32, 34, 36, 38, 40, 42, 44, 46, 48, 50, 52, 54, 56, 58, 60, 62,
-        ],
+        data: [33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44],
         borderColor: "rgb(53, 162, 235)",
         backgroundColor: "rgba(53, 162, 235, 0.5)",
         yAxisID: "y1",
       },
       {
+        label: "Head Circumference required (cm)",
+        data: [32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43],
+        borderColor: "#93d2eb",
+        backgroundColor: "rgba(53, 162, 235, 0.5)",
+        yAxisID: "y1",
+        borderDash: [5, 5],
+      },
+      {
         label: "Weight (kg)",
-        data: [
-          0, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11,
-        ],
-        borderColor: "rgb(69,192,69)",
-        backgroundColor: "rgba(69,192,69, 0.5)",
+        data: [4, 4.2, 4.5, 4.8, 5, 5.2, 5.5, 5.8, 6, 6.2, 6.5, 6.8],
+        borderColor: "rgb(69, 192, 69)",
+        backgroundColor: "rgba(69, 192, 69, 0.5)",
         yAxisID: "y1",
       },
+      {
+        label: "Weight required (kg)",
+        data: [3.8, 4, 4.3, 4.6, 4.9, 5.1, 5.4, 5.7, 6, 6.2, 6.5, 6.8],
+        borderColor: "#8dd88d",
+        backgroundColor: "#8dd88d",
+        yAxisID: "y1",
+        borderDash: [5, 5],
+      },
     ],
+    options: {
+      scales: {
+        yAxes: [
+          {
+            id: "y",
+            type: "linear",
+            position: "left",
+            ticks: {
+              suggestedMin: 0,
+            },
+          },
+          {
+            id: "y1",
+            type: "linear",
+            position: "right",
+            ticks: {
+              suggestedMin: 0,
+            },
+          },
+        ],
+      },
+    },
   };
+
   return <Line options={options} data={data} />;
 };
 
