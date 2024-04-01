@@ -1,0 +1,56 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  .dataWrap {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 16px;
+
+    h5 {
+      font-style: normal;
+      font-weight: 500;
+      font-size: 25px;
+      line-height: 17px;
+      /* identical to box height */
+      color: #878787;
+      margin: 0px;
+    }
+
+    p {
+      /* We can’t display chart unless you add he required data. Please click the “Add Data” button to start adding your data. */
+
+      font-style: normal;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 20px;
+      margin: 0px;
+      color: #878787;
+      max-width: 430px;
+    }
+
+    .addButton {
+      background-color: transparent;
+      border: 1px solid #0582f8;
+      color: #ffffff;
+      font-size: 14px;
+      background-color: #0582f8;
+      padding: 10px 15px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      margin-top: 7px;
+    }
+  }
+
+  .lottie {
+    width: 100%;
+    max-width: 300px;
+  }
+}

@@ -1,0 +1,73 @@
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 1rem;
+  height: 100%;
+  background-color: #fff;
+  box-sizing: border-box;
+  padding: 1rem 2.5rem;
+  position: relative;
+
+  .addDataButton {
+    position: absolute;
+    top: 105px;
+    right: 53px;
+    outline: 0px;
+    border: 0px;
+    color: #0582f8;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+    font-size: 15px;
+
+    svg {
+      path {
+        fill: #0582f8;
+      }
+    }
+  }
+
+  h2 {
+    margin: 0px;
+    margin-bottom: 15px;
+  }
+
+  .chartContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    padding: 15px;
+    border: 1px solid #c9c9c9;
+    border-radius: 10px;
+    width: 100%;
+    height: calc(100vh - 160px);
+  }
+
+  .segmentWrap {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    .segment {
+      & :global .ant-segmented-item-label {
+        height: 45px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0px 43px;
+        font-weight: 500 !important;
+      }
+    }
+    & :global .ant-segmented .ant-segmented-item-selected {
+      background-color: #e5f9fe;
+    }
+  }
+}

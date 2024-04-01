@@ -10,6 +10,7 @@ import {
   Legend,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
+import { useGrowthChartData } from "../../contexts/GrowthChartContext";
 
 ChartJS.register(
   CategoryScale,
@@ -22,6 +23,8 @@ ChartJS.register(
 );
 
 const GrowthChart = () => {
+  const { data: contextData } = useGrowthChartData();
+
   const options = {
     responsive: true,
     interaction: {
@@ -76,32 +79,14 @@ const GrowthChart = () => {
     },
   };
 
-  const labels = [
-    "0",
-    "1",
-    "2",
-    "3",
-    "4",
-    "5",
-    "6",
-    "7",
-    "8",
-    "9",
-    "10",
-    "11",
-    "12",
-    "18",
-    "24",
-    "30",
-    "36",
-  ];
+  const labels = contextData.map((item) => item.date);
 
   const data = {
     labels: labels,
     datasets: [
       {
         label: "Height (cm)",
-        data: [130, 132, 135, 138, 140, 142, 145, 147, 150, 152, 155, 158],
+        data: contextData?.map((item) => Number(item.length)),
         borderColor: "rgb(255, 99, 132)",
         backgroundColor: "rgba(255, 99, 132, 0.5)",
         yAxisID: "y",
@@ -115,7 +100,7 @@ const GrowthChart = () => {
       },
       {
         label: "Head Circumference (cm)",
-        data: [33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44],
+        data: contextData?.map((item) => Number(item.headCircumference)),
         borderColor: "rgb(53, 162, 235)",
         backgroundColor: "rgba(53, 162, 235, 0.5)",
         yAxisID: "y1",
@@ -130,7 +115,7 @@ const GrowthChart = () => {
       },
       {
         label: "Weight (kg)",
-        data: [4, 4.2, 4.5, 4.8, 5, 5.2, 5.5, 5.8, 6, 6.2, 6.5, 6.8],
+        data: contextData?.map((item) => Number(item.weight)),
         borderColor: "rgb(69, 192, 69)",
         backgroundColor: "rgba(69, 192, 69, 0.5)",
         yAxisID: "y1",
