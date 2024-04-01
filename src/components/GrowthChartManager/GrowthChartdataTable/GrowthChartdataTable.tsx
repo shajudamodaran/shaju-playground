@@ -9,6 +9,7 @@ import { useState } from "react";
 const GrowthChartDataTable = () => {
   const [editEnabledRows, setEditEnabledRows] = useState<string[]>([]);
   const { data: chartData, updateData } = useGrowthChartData();
+  console.log("🚀 ~ GrowthChartDataTable ~ data:", chartData);
   const [changeData, setChangeData] = useState<
     { id: string; value: string; key: string }[]
   >([]);
@@ -52,9 +53,9 @@ const GrowthChartDataTable = () => {
   //Helper functions end.................................................................................
 
   //Table config.................................................................................
-  const dataSource = chartData.map((data) => ({
+  const dataSource: any = chartData.map((data) => ({
     id: data?.id,
-    date: data?.date,
+    date: data?.date?.toString() || "No date",
     weight: data?.weight,
     length: data?.length,
     headCircumference: data?.headCircumference,
