@@ -1,15 +1,17 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Button, Input, Table } from "antd";
+import { Button, Input, Modal, Table } from "antd";
 import styles from "./index.module.scss";
 import { useGrowthChartData } from "../../../contexts/GrowthChartContext";
 import { GrowthChartDataInterface } from "../../../interfaces/GrowthChartData";
 import { Assets } from "../../../assets/assets";
 import { useState } from "react";
+import dayjs from "dayjs";
 
 const GrowthChartDataTable = () => {
   const [editEnabledRows, setEditEnabledRows] = useState<string[]>([]);
+  const [isSuccessModalOpen, setIsSuccessModalOpen] = useState<boolean>(false);
   const { data: chartData, updateData } = useGrowthChartData();
-  console.log("🚀 ~ GrowthChartDataTable ~ data:", chartData);
+
   const [changeData, setChangeData] = useState<
     { id: string; value: string; key: string }[]
   >([]);
@@ -26,6 +28,7 @@ const GrowthChartDataTable = () => {
         changeData.map((each: { id: string; value: string; key: string }) => {
           if (each.id === id) {
             updateData(id, { [each.key]: each.value });
+            setIsSuccessModalOpen(true);
           }
         });
       }
@@ -66,6 +69,9 @@ const GrowthChartDataTable = () => {
       title: "",
       dataIndex: "date",
       key: "date",
+      render: (_: string) => {
+        return dayjs(_).format("MMMM YYYY");
+      },
     },
     {
       title: "Weight (in kg)",
@@ -150,6 +156,12 @@ const GrowthChartDataTable = () => {
         dataSource={dataSource}
         columns={columns}
       />
+      <SuccessModal
+        isOpen={isSuccessModalOpen}
+        handleClose={() => {
+          setIsSuccessModalOpen(false);
+        }}
+      />
     </div>
   );
 };
@@ -174,9 +186,36 @@ const InputController = ({
       type={isEditEnabled ? "number" : "text"}
       key={data?.id}
       disabled={isEditEnabled ? false : true}
-      className={styles.inputController}
+      className={`${styles.inputController} ${
+        isEditEnabled ? styles.inputControllerEditable : null
+      }`}
       suffix={<Assets.GrowthDecreaseIcon />}
       defaultValue={data}
     />
+  );
+};
+
+const SuccessModal = ({
+  isOpen,
+  handleClose,
+}: {
+  isOpen: boolean;
+  handleClose: () => void;
+}) => {
+  return (
+    <Modal
+      className={styles.successModal}
+      title={null}
+      closeIcon={<></>}
+      open={isOpen}
+      onOk={handleClose}
+      onCancel={handleClose}
+      footer={false}
+    >
+      <p>Entry updated successfully.</p>
+      <button onClick={handleClose} className={styles.closeBtn}>
+        Close
+      </button>
+    </Modal>
   );
 };
