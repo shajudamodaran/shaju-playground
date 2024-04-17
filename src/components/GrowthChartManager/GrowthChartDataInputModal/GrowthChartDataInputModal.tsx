@@ -1,5 +1,5 @@
 import React from "react";
-import { Modal, Input, Button, Form, DatePicker } from "antd";
+import { Modal, Input, Button, Form } from "antd";
 import styles from "./index.module.scss";
 import { useGrowthChartData } from "../../../contexts/GrowthChartContext";
 
@@ -60,10 +60,10 @@ const GrowthChartDataInputModal: React.FC<GrowthChartDataInputModalProps> = ({
       <Form form={form} layout="vertical">
         <Form.Item
           name="date"
-          label="Date"
-          rules={[{ required: true, message: "Please input the date!" }]}
+          label="Age in months"
+          rules={[{ required: true, message: "Please input the age!" }]}
         >
-          <DatePicker format={"DD-MMM-YYYY"} placeholder="Select date" />
+          <Input type="number" />
         </Form.Item>
         <Form.Item
           name="weight"

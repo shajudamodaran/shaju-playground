@@ -5,7 +5,6 @@ import { useGrowthChartData } from "../../../contexts/GrowthChartContext";
 import { GrowthChartDataInterface } from "../../../interfaces/GrowthChartData";
 import { Assets } from "../../../assets/assets";
 import { useState } from "react";
-import dayjs from "dayjs";
 
 const GrowthChartDataTable = () => {
   const [editEnabledRows, setEditEnabledRows] = useState<string[]>([]);
@@ -66,11 +65,12 @@ const GrowthChartDataTable = () => {
 
   const columns = [
     {
-      title: "",
+      title: "Age in months",
       dataIndex: "date",
       key: "date",
       render: (_: string) => {
-        return dayjs(_).format("MMMM YYYY");
+        //return dayjs(_).format("MMMM YYYY");
+        return _;
       },
     },
     {

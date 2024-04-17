@@ -11,7 +11,6 @@ import {
 } from "chart.js";
 import { Line } from "react-chartjs-2";
 import { useGrowthChartData } from "../../contexts/GrowthChartContext";
-import dayjs from "dayjs";
 
 ChartJS.register(
   CategoryScale,
@@ -107,9 +106,7 @@ const GrowthChart = () => {
     },
   };
 
-  const labels = contextData.map((item) =>
-    dayjs(item?.date).format("MMMM YYYY")
-  );
+  const labels = contextData.map((item) => item?.date);
 
   const data = {
     labels: labels,
