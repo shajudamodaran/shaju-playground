@@ -94,32 +94,47 @@ const NavBar = () => {
           </div>
         </div>
       </div>
-      {subMenus?.length > 0 && (
-        <div
-          className={`${styles.subNavContainer} ${
-            isSubOpen
-              ? styles.subNavContainerOpen
-              : styles.subNavContainerClosed
-          }`}
-        >
-          <div className={styles.subNavOptionsContainer}>
-            {subMenus.map((option, index) => (
-              <div
-                onClick={handleSubNavClick.bind(this, option?.name)}
-                key={index}
-                className={`${styles.subNavOption} ${
-                  subSelectedOption === option?.name
-                    ? styles.activeSubNavOption
-                    : ""
-                }`}
-              >
-                {option.icon}
-                <span>{option.name}</span>
-              </div>
-            ))}
+
+      <div className={styles.rightContainer}>
+        <div className={styles.header}>
+          <img
+            className={styles.logo}
+            src="https://gangahospital.com/giw/public/assets/images/logo_trans.png"
+            alt=""
+          />
+
+          <div className={styles.navPath}>
+            <SvgIcons.FolderIcon />
+            Mail {">"} Inbox {">"} Home
           </div>
         </div>
-      )}
+        <div className={styles.contentBody}>
+          {subMenus?.length > 0 && (
+            <div
+              className={`${styles.subNavContainer} ${
+                isSubOpen
+                  ? styles.subNavContainerOpen
+                  : styles.subNavContainerClosed
+              }`}
+            >
+              <div className={styles.subNavOptionsContainer}>
+                {subMenus.map((option, index) => (
+                  <SubMenuItem
+                    key={index}
+                    index={index}
+                    option={option}
+                    subSelectedOption={subSelectedOption}
+                    handleSubNavClick={handleSubNavClick}
+                  />
+                ))}
+              </div>
+            </div>
+          )}
+          <div className={styles.contentContainer}>
+            <div className={styles.content}></div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
@@ -138,17 +153,70 @@ const SubMenuList = ({
   return (
     <div className={styles.subNavOptionsContainer}>
       {subMenus.map((option, index) => (
-        <div
-          onClick={handleSubNavClick.bind(this, option?.name)}
+        <SubMenuItem
           key={index}
-          className={`${styles.subNavOption} ${
-            subSelectedOption === option?.name ? styles.activeSubNavOption : ""
-          }`}
-        >
-          {option.icon}
-          <span>{option.name}</span>
-        </div>
+          index={index}
+          option={option}
+          subSelectedOption={subSelectedOption}
+          handleSubNavClick={handleSubNavClick}
+        />
       ))}
+    </div>
+  );
+};
+
+const SubMenuItem = ({
+  index,
+  subSelectedOption,
+  option,
+  handleSubNavClick,
+}: {
+  index: number;
+  subSelectedOption: string;
+  option: any;
+  handleSubNavClick: (option: any) => void;
+}) => {
+  const [isSubOpen, setIsSubOpen] = useState(false);
+
+  function handleSubOpen() {
+    setIsSubOpen(!isSubOpen);
+  }
+
+  return (
+    <div
+      onClick={handleSubNavClick.bind(this, option?.name)}
+      key={index}
+      className={`${styles.subNavOption} ${
+        subSelectedOption === option?.name ? styles.activeSubNavOption : ""
+      }`}
+    >
+      <div onClick={handleSubOpen} className={styles.subTextContainer}>
+        {" "}
+        {option.icon}
+        <span>{option.name}</span>
+      </div>
+
+      {
+        option?.subItems?.length && isSubOpen
+          ? option?.subItems.map((subOption: any, index: number) => (
+              <div
+                key={index}
+                onClick={handleSubNavClick.bind(this, subOption?.name)}
+                className={`${styles.subNavOption} ${
+                  subSelectedOption === subOption?.name
+                    ? styles.activeSubNavOption
+                    : ""
+                }`}
+              >
+                <div className={styles.subTextContainer}>
+                  {subOption.icon}
+                  <span>{subOption.name}</span>
+                </div>
+              </div>
+            ))
+          : null
+        // If the option has subItems, show the arrow icon
+      }
     </div>
   );
 };

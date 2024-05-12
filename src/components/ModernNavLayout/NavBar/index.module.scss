@@ -4,6 +4,7 @@
   flex-direction: row;
   align-items: flex-start;
   justify-content: flex-start;
+  width: 100%;
 }
 
 .navBarContainer {
@@ -89,60 +90,128 @@
   }
 }
 
-.subNavContainer {
-  margin: 0px 10px;
-  margin-top: 87px;
-  transition-duration: 0.2s;
-  padding: 0px 5px;
-  .subNavOptionsContainer {
+.rightContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+  height: 100%;
+  flex-wrap: nowrap;
+  gap: 5px;
+  .subNavContainer {
+    margin: 0px 10px;
+    margin-top: 10px;
+    transition-duration: 0.2s;
+    padding: 0px 5px;
+    .subNavOptionsContainer {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+      gap: 4px;
+      // .subNavOption {
+      //   display: flex;
+      //   flex-direction: row;
+      //   align-items: center;
+      //   justify-content: flex-start;
+      //   font-size: 14px;
+      //   cursor: pointer;
+      //   -webkit-user-select: none; /* Safari */
+      //   -ms-user-select: none; /* IE 10 and IE 11 */
+      //   user-select: none; /* Standard syntax */
+      //   gap: 5px;
+      //   width: 100%;
+      //   height: 40px;
+      //   box-sizing: border-box;
+      //   padding: 0px 10px;
+
+      //   &:hover {
+      //     background-color: #dddddd;
+      //     border-radius: 100px;
+      //   }
+      //   svg {
+      //     height: 19px;
+      //     width: auto;
+      //   }
+      // }
+      // .activeSubNavOption {
+      //   background-color: #d1d1d1d1;
+      //   border-radius: 100px;
+      // }
+    }
+  }
+  .subNavContainerClosed {
+    padding: 0px;
+    width: 0px;
+    overflow: hidden;
+    opacity: 0;
+    margin: 0px;
+  }
+
+  .subNavContainerOpen {
+    width: 200px;
+    opacity: 1;
+    width: 200px;
+  }
+
+  .header {
+    width: 100%;
+    height: 50px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    border-radius: 10px;
+    padding: 10px 15px;
+    .logo {
+      height: 30px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .navPath {
+      margin: 0px;
+      padding: 0px;
+      margin-left: 77px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 10px;
+      font-weight: 500;
+    }
+  }
+
+  .contentBody {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 10px;
+  }
+  .contentContainer {
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+    padding-left: 0px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
-    gap: 4px;
-    .subNavOption {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: flex-start;
-      font-size: 14px;
-      cursor: pointer;
-      -webkit-user-select: none; /* Safari */
-      -ms-user-select: none; /* IE 10 and IE 11 */
-      user-select: none; /* Standard syntax */
-      gap: 5px;
-      width: 100%;
-      height: 40px;
-      box-sizing: border-box;
-      padding: 0px 10px;
+    gap: 10px;
+    padding-top: 0px;
 
-      &:hover {
-        background-color: #dddddd;
-        border-radius: 100px;
-      }
-      svg {
-        height: 19px;
-        width: auto;
-      }
-    }
-    .activeSubNavOption {
-      background-color: #d1d1d1d1;
-      border-radius: 100px;
+    .content {
+      background-color: #fff;
+      border-radius: 10px;
+      height: 100%;
+      width: 100%;
     }
   }
-}
-
-.subNavContainerClosed {
-  padding: 0px;
-  width: 0px;
-  overflow: hidden;
-  opacity: 0;
-}
-
-.subNavContainerOpen {
-  width: 200px;
-  opacity: 1;
-  width: 200px;
 }
 
 .subNavOptionsContainer {
@@ -152,10 +221,11 @@
   justify-content: flex-start;
   gap: 4px;
   .subNavOption {
+    width: 100%;
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-start;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
     font-size: 14px;
     cursor: pointer;
     -webkit-user-select: none; /* Safari */
@@ -163,21 +233,33 @@
     user-select: none; /* Standard syntax */
     gap: 5px;
     width: 100%;
-    height: 40px;
+    min-height: 40px;
     box-sizing: border-box;
-    padding: 0px 10px;
+    padding: 10px 10px;
 
     &:hover {
-      background-color: #dddddd;
-      border-radius: 100px;
+      background-color: #f0f4f9;
+      border-radius: 20px;
     }
     svg {
       height: 19px;
       width: auto;
     }
+
+    .subTextContainer {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 5px;
+      width: 100%;
+      span {
+        white-space: nowrap;
+      }
+    }
   }
   .activeSubNavOption {
-    background-color: #d1d1d1d1;
-    border-radius: 100px;
+    background-color: #e4eefa !important;
+    border-radius: 20px !important;
   }
 }

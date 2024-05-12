@@ -24,15 +24,29 @@ export const ModernNavBarOptions = [
     icon: <SvgIcons.ChatIcon />,
     subItems: [
       {
-        name: "Home",
+        name: "Direct messages",
+        icon: <SvgIcons.ArrowRightIcon />,
+        subItems: [
+          {
+            name: "Home",
+            icon: <SvgIcons.CalendarIcon />,
+          },
+          {
+            name: "Mentions",
+            icon: <SvgIcons.CalendarIcon />,
+          },
+          {
+            name: "Stared",
+            icon: <SvgIcons.CalendarIcon />,
+          },
+        ],
+      },
+      {
+        name: "Shortcuts",
         icon: <SvgIcons.CalendarIcon />,
       },
       {
-        name: "Mentions",
-        icon: <SvgIcons.CalendarIcon />,
-      },
-      {
-        name: "Stared",
+        name: "Spaces",
         icon: <SvgIcons.CalendarIcon />,
       },
     ],
