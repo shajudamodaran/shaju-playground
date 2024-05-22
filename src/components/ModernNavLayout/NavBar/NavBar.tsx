@@ -104,8 +104,8 @@ const NavBar = () => {
           />
 
           <div className={styles.navPath}>
-            <SvgIcons.FolderIcon />
-            Mail {">"} Inbox {">"} Home
+            {/* <SvgIcons.FolderIcon /> */}
+            Mail
           </div>
         </div>
         <div className={styles.contentBody}>
@@ -196,27 +196,33 @@ const SubMenuItem = ({
         <span>{option.name}</span>
       </div>
 
-      {
-        option?.subItems?.length && isSubOpen
-          ? option?.subItems.map((subOption: any, index: number) => (
-              <div
-                key={index}
-                onClick={handleSubNavClick.bind(this, subOption?.name)}
-                className={`${styles.subNavOption} ${
-                  subSelectedOption === subOption?.name
-                    ? styles.activeSubNavOption
-                    : ""
-                }`}
-              >
-                <div className={styles.subTextContainer}>
-                  {subOption.icon}
-                  <span>{subOption.name}</span>
-                </div>
-              </div>
-            ))
-          : null
-        // If the option has subItems, show the arrow icon
-      }
+      {option?.subItems?.length >= 1 && isSubOpen ? (
+        <div className={styles.list}>
+          {
+            option?.subItems?.length && isSubOpen
+              ? option?.subItems.map((subOption: any, index: number) => (
+                  <div
+                    key={index}
+                    onClick={handleSubNavClick.bind(this, subOption?.name)}
+                    className={`${styles.subNavOption} ${
+                      subSelectedOption === subOption?.name
+                        ? styles.activeSubNavOption
+                        : ""
+                    }`}
+                  >
+                    <div className={styles.subTextContainer}>
+                      {subOption.icon}
+                      <span>{subOption.name}</span>
+                    </div>
+                  </div>
+                ))
+              : null
+            // If the option has subItems, show the arrow icon
+          }
+        </div>
+      ) : (
+        ""
+      )}
     </div>
   );
 };

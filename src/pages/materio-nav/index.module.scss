@@ -1,0 +1,27 @@
+.container {
+  background-color: #f4f5fa;
+  height: 100vh;
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  .navContent {
+    width: 100%;
+    height: 100%;
+
+    transition-duration: 0.5s;
+    transition: all 0.5s;
+    padding-left: 70px;
+
+    padding-top: 19px;
+  }
+
+  .containerOpen {
+    padding-left: 270px;
+  }
+  .containerClosed {
+    padding-left: 70px;
+  }
+}
