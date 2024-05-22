@@ -1,7 +1,7 @@
 import { SvgIcons } from "../../../assets/svg-icons";
 import { MateroNavBarOptions } from "../../../Utils/MaterioNavBarUtils";
 import MainNavOption from "../MainNavOption/Index";
-import styles from "./index.module.scss";
+import styles from "./Index.module.scss";
 import { Radio } from "antd";
 
 interface MaterioNavBarProps {
