@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { SvgIcons } from "../../../assets/svg-icons";
 import { MateroNavBarOptions } from "../../../Utils/MaterioNavBarUtils";
 import MainNavOption from "../MainNavOption/Index";
@@ -13,12 +14,18 @@ const MaterioNavBar = ({
   isPositionAbsolute,
   handleNavPositionChange,
 }: MaterioNavBarProps) => {
+  const [activeNavItem, setActiveNavItem] = useState("Dashboard");
+
   const getContainerClass = () => {
     return isPositionAbsolute ? styles.containerOpen : styles.containerCloses;
   };
 
   const handleClick = () => {
     handleNavPositionChange(!isPositionAbsolute);
+  };
+
+  const handleMenuItemClick = (name: string) => {
+    setActiveNavItem(name);
   };
 
   return (
@@ -42,23 +49,11 @@ const MaterioNavBar = ({
                 {group.options.map((option, index) => {
                   return (
                     <div key={index} className={styles.option}>
-                      <MainNavOption option={option} />
-                      {/* <div
-                        className={`${styles.subOptions} ${styles.optionalItem}`}
-                      >
-                        {option.subOptions?.map((subOption, index) => {
-                          return (
-                            <div key={index} className={styles.subOption}>
-                              <div className={styles.icon}>
-                                <SvgIcons.CalendarIcon />
-                              </div>
-                              <div className={styles.name}>
-                                {subOption.name}
-                              </div>
-                            </div>
-                          );
-                        })}
-                      </div> */}
+                      <MainNavOption
+                        handleMenuItemClick={handleMenuItemClick}
+                        activeItem={activeNavItem}
+                        option={option}
+                      />
                     </div>
                   );
                 })}

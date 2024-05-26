@@ -52,17 +52,17 @@ export const MateroNavBarOptions = [
         path: "",
       },
       {
-        name: "eCommerce",
+        name: "eCommerce 2",
         icon: "",
         path: "",
         subOptions: [
           {
-            name: "Collapsed Menu",
+            name: "Collapsed Menu 2",
             icon: "",
             path: "",
           },
           {
-            name: "Content Navbar",
+            name: "Content Navbar 2",
             icon: "",
             path: "",
           },
